@@ -1,0 +1,99 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{460569E1-B356-4018-A78B-778518C72DCD}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>MacroProcessor</RootNamespace>
+    <AssemblyName>MacroProcessor</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Evaluator\EvaluationEnvironment.cs" />
+    <Compile Include="Evaluator\Evaluator.cs" />
+    <Compile Include="Evaluator\ExceptionDictionary.cs" />
+    <Compile Include="Evaluator\FunctionCall.cs" />
+    <Compile Include="Evaluator\Macro\Macro.cs" />
+    <Compile Include="Evaluator\Macro\MacroExpander.cs" />
+    <Compile Include="Lex\Lexeme.cs" />
+    <Compile Include="Lex\LexemeType.cs" />
+    <Compile Include="Lex\Lexer.cs" />
+    <Compile Include="Parser\SExprParser.cs" />
+    <Compile Include="Parser\Sexpr\Atom\AtomExpr\SExprAbstractValueAtom.cs" />
+    <Compile Include="Parser\Sexpr\Atom\AtomExpr\SExprBool.cs" />
+    <Compile Include="Parser\Sexpr\Atom\AtomExpr\SExprFloat.cs" />
+    <Compile Include="Parser\Sexpr\Atom\AtomExpr\SExprInt.cs" />
+    <Compile Include="Parser\Sexpr\Atom\AtomExpr\SExprObject.cs" />
+    <Compile Include="Parser\Sexpr\Atom\AtomExpr\SExprString.cs" />
+    <Compile Include="Parser\Sexpr\Atom\AtomExpr\SExprValueAtom.cs" />
+    <Compile Include="Parser\Sexpr\Atom\AtomExpr\SExprVariadicLambda.cs" />
+    <Compile Include="Parser\Sexpr\Atom\SExprAtom.cs" />
+    <Compile Include="Parser\Sexpr\Atom\SExprLambda.cs" />
+    <Compile Include="Parser\Sexpr\Atom\SExprSymbol.cs" />
+    <Compile Include="Parser\Sexpr\SExpr.cs" />
+    <Compile Include="Parser\Sexpr\SExprList.cs" />
+    <Compile Include="MainForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MainForm.Designer.cs">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Evaluator\StandardEvaluationEnvironment.cs" />
+    <Compile Include="StandartLibrary.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="MainForm.resx">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

@@ -1,0 +1,85 @@
+(+ 5 5)
+(LispMachine.Evaluator\Evaluate (.ReadLine (new System.IO.StreamReader "test.txt")))
+(LispMachine.Evaluator\Evaluate "(define text-func (lambda (x) (println (* x x))))") 
+
+(define myfunc (
+    lambda (x) 
+        (println x)
+        (+ x x)
+))
+
+(myfunc 10)
+
+                (+ (+ -10 20) (+ 10 23))
+                (if true 10 100)
+                (define x 5)
+                ((lambda (a) (+ a a)) 3)
+                (let (y 4 z (+ y 1)) (+ x z))
+                (let (y 1) (let (z (+ y 1)) (+ z 1)))
+
+                (let (y 1) (define z (+ y x)))
+
+                (define apply-2 (lambda (fn x y) (fn x y)))
+                (apply-2 * 5 (apply-2 * 2 2))
+                (define arithm (lambda (x) (if (> x 0) (+ x (arithm (- x 1))) 0)))
+
+                (define arithm-tail 
+                    (lambda (x acc) (if (> x 0) 
+                                (arithm-tail (- x 1) (+ acc x)) 
+                                acc)))
+                (define arithm-t
+                    (lambda (x) (arithm-tail x 0)))
+
+                (define arithm-tail-let
+                    (lambda (x acc) (let (add (+ acc x))
+                    (if (> x 0) 
+                                (arithm-tail-let (- x 1) add) 
+                                acc)
+                    )
+                    ))
+                (define arithm-tl
+                    (lambda (x) (arithm-tail-let x 0)))
+
+                (define addA (lambda (a) (lambda (y) (+ a y))))
+                (define dec (addA -1)) 
+
+                (.CompareTo 55 67)
+
+
+(define sgn (lambda (x) (cond 
+    (> x 0) 1         
+    (< x 0) -1
+    (= x 0) 0
+)))
+
+(let (a -64)
+    (println (System.String\Concat "sgn of " a)) 
+    (println (sgn -64)) 
+)
+
+(defmacro print2 (x) (quote (let (str1 x str2 x) (println str1) (println str2)))) 
+(print2 (.Next (new System.Random) 0 100))  
+(macroexpand (quote (print2 "hello")))
+(macroexpand (quote (print2 (.Next (new System.Random) 0 100)))) 
+
+(println "Please enter a number:")
+(println (+ 45.2 (System.Double\Parse (readln))))
+
+(.Next (new System.Random) 90 100)
+
+(try (throw (new System.ApplicationException "MY MESSAGE!!!")) (catch System.Exception e (println "Exception caught") -1))
+
+(try (LispMachine.StandardLibrary\ThrowsException) (catch System.Exception e (println "catch message!") (System.String\Concat "Caught exception: " (.ToString e))) (finally (println "finally message!"))) 
+
+
+(defmacro printIf (cond x) (quote (if cond (println (System.String\Concat "true " x)) (println (System.String\Concat "false " x)))))
+
+(defmacro rec-fact (num) (quote (if (> num 0) (* num (rec-fact (- num 1))) 1)))
+
+(let (x 100) (define func-inside-let (lambda (y) (+ x y)))) 
+
+(define arg-count (lambda args (count args)))
+
+(list x x (+ x 1))
+
+(apply ++ (list 1 2 3 4 5))
